@@ -26,9 +26,15 @@ const GameForm: React.FC<IGame> = ({ game, pick, setPick }) => {
         }
     }
 
+    const speak = (text: string) => {
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        window.speechSynthesis.speak(utterance);
+    }
+
     return (
         <div className="w-full bg-green-200 p-2 flex justify-center flex-col">
-            <h1 className="text-2xl text-red-400 font-bold flex  justify-center">{game.question}</h1>
+            <h1 className="text-2xl text-red-400 font-bold flex  justify-between pl-2">{game.question} <button onClick={() => speak(game.question)}>Speak</button></h1>
             <div>
                 {
                     pick

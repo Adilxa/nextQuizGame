@@ -15,6 +15,8 @@ const GamePage = () => {
 
     const [pick, setPick] = useState(false)
 
+
+
     return (
         <section className="w-100 bg-green-200  h-full ">
             <GameWindow setStep={setStep} step={step} setPick={setPick}>

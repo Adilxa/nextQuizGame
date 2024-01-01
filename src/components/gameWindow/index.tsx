@@ -18,6 +18,8 @@ const GameWindow: React.FC<IWindow> = ({ children, step, setStep, setPick }) => 
         setStep(step - 1)
     }
 
+
+
     return (
         <div className="w-full p-20 bg-pink-300">
             <div>{children}</div>
