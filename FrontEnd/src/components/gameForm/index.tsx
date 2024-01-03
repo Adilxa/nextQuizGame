@@ -28,9 +28,14 @@ const GameForm: React.FC<IGame> = ({ game, pick, setPick }) => {
 
     const speak = (text: string) => {
         const utterance = new SpeechSynthesisUtterance(text);
-
         window.speechSynthesis.speak(utterance);
     }
+
+    if (game == undefined || null) return (
+        <div className="w-full bg-green-200 p-2 flex justify-center flex-col">
+            <h1 className="text-xl text-black text-center">Questions are finished!!!</h1>
+        </div>
+    )
 
     return (
         <div className="w-full bg-green-200 p-2 flex justify-center flex-col">

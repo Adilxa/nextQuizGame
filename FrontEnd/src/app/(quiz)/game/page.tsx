@@ -10,16 +10,13 @@ const GamePage = () => {
         { question: "Whats color of the sun?", answers: ["green", "yellow", "red"], correct: 2 }
     ]
 
-
     const [step, setStep] = useState(0);
 
-    const [pick, setPick] = useState(false)
-
-
+    const [pick, setPick] = useState(false);
 
     return (
         <section className="w-100 bg-green-200  h-full ">
-            <GameWindow setStep={setStep} step={step} setPick={setPick}>
+            <GameWindow quizArr={quizArr} setStep={setStep} step={step} setPick={setPick}>
                 <GameForm game={quizArr[step]} pick={pick} setPick={setPick} />
             </GameWindow>
         </section>

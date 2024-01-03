@@ -1,24 +1,37 @@
 import React from "react";
 
+type IQuizItem = {
+    question: string,
+    answers: string[]
+    correct: number
+}
 interface IWindow {
     children: React.ReactNode | React.ReactElement;
     step: number;
     setStep: (_: number) => void;
     setPick: (_: boolean) => void;
+    quizArr: IQuizItem[]
 }
 
-const GameWindow: React.FC<IWindow> = ({ children, step, setStep, setPick }) => {
+const GameWindow: React.FC<IWindow> = ({ children, step, setStep, setPick, quizArr }) => {
 
     const stepPlus = () => {
-        setStep(step + 1);
+        if (step < quizArr.length) {
+            setStep(step + 1);
+        } else {
+            return
+        }
         setPick(false)
     }
 
+
     const stepBack = () => {
-        setStep(step - 1)
+        if (step > 0) {
+            setStep(step - 1)
+        } else {
+            return
+        }
     }
-
-
 
     return (
         <div className="w-full p-20 bg-pink-300">
