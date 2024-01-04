@@ -6,8 +6,6 @@ function AdminPage() {
 
     const getUsers = async () => {
         const res = await axios.get("http://localhost:3001/user")
-        console.log(res.data);
-
     }
 
     useEffect(() => {

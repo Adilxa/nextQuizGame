@@ -13,12 +13,11 @@ interface IGame {
 
 const GameForm: React.FC<IGame> = ({ game, pick, setPick }) => {
 
-
     const [correctAnsw, setCorrectAnsw] = useState(0);
 
     const pickAnswer = (index: number) => {
         setPick(true);
-        if (game.correct == index) {
+        if (game.correct === index) {
             setCorrectAnsw(correctAnsw + 1)
             alert("Correct")
         } else {
@@ -45,7 +44,7 @@ const GameForm: React.FC<IGame> = ({ game, pick, setPick }) => {
                     pick
                         ?
                         game.answers.map((el: string, i: number) => (
-                            <div key={i} className={`bg-white m-2 p-1 text-black cursor-pointer ${i + 1 == game.correct ? "bg-green-300" : " bg-gray-400"}`}>
+                            <div key={i} className={`bg-white m-2 p-1 text-black cursor-pointer ${i + 1 === game.correct ? "bg-green-300" : " bg-gray-400"}`}>
                                 {i + 1}) {el}
                             </div>
                         ))

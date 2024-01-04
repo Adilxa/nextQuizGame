@@ -11,7 +11,6 @@ const fetchData = () =>
 async function DashboardPage() {
     const data = await fetchData();
 
-
     return (
         <div>
             {data.map((item: any) => (
