@@ -16,6 +16,8 @@ const GamePage = () => {
 
     const [isLoading, setLoading] = useState(true)
 
+    const [step, setStep] = useState(0);
+
     const getQuestions = async () => {
         try {
             const response = await axios.get("http://localhost:3001/quiz");
@@ -31,7 +33,6 @@ const GamePage = () => {
         getQuestions()
     }, [])
 
-    const [step, setStep] = useState(0);
 
     const [pick, setPick] = useState(false);
 

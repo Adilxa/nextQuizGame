@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IGame {
     game: {
@@ -23,7 +23,22 @@ const GameForm: React.FC<IGame> = ({ game, pick, setPick }) => {
         } else {
             alert("Not Correct")
         }
+        return true
     }
+
+    useEffect(() => {
+        if (pick) {
+            const pickedItem = document.getElementById("picked");
+            if (pickedItem) {
+                pickedItem.style.backgroundColor = "red";
+            }
+            return () => {
+                if (pickedItem) {
+                    pickedItem.style.backgroundColor = "white";
+                }
+            };
+        }
+    }, [pick]);
 
     const speak = (text: string) => {
         const utterance = new SpeechSynthesisUtterance(text);
@@ -44,13 +59,13 @@ const GameForm: React.FC<IGame> = ({ game, pick, setPick }) => {
                     pick
                         ?
                         game.answers.map((el: string, i: number) => (
-                            <div key={i} className={`bg-white m-2 p-1 text-black cursor-pointer ${i + 1 === game.correct ? "bg-green-300" : " bg-gray-400"}`}>
+                            <div id={i + 1 == game.correct ? "picked" : ""} key={i} className={`bg-white m-2 p-1 text-black cursor-pointer ${pick && i + 1 === game.correct ? "bg-green-300" : " bg-gray-400"}`}>
                                 {i + 1}) {el}
                             </div>
                         ))
                         :
                         game.answers.map((el: string, i: number) => (
-                            <div key={i} onClick={() => pickAnswer(i + 1)} className="bg-white m-2 p-1 text-black cursor-pointer">
+                            <div id={i + 1 == game.correct ? "picked" : ""} key={i} onClick={() => pickAnswer(i + 1)} className="bg-white m-2 p-1 text-black cursor-pointer">
                                 {i + 1}) {el}
                             </div>
                         ))
