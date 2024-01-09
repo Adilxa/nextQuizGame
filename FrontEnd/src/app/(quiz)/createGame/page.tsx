@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface IGame {
     question: string;
@@ -9,6 +10,10 @@ interface IGame {
 }
 
 const CreateNewGame = () => {
+
+    const router = useRouter()
+
+
     const [quizData, setQuizData] = useState<IGame>({
         question: "hello",
         answers: [""],
@@ -32,16 +37,19 @@ const CreateNewGame = () => {
         }));
     };
 
+    const randomId = (): number => {
+        return Math.floor(Math.random() * Date.now())
+    }
+
+
     const onSubmit = async (e: any) => {
         e.preventDefault()
         try {
-            const res = await axios.post("http://localhost:3001/quiz", {
+            await axios.post("http://localhost:3001/quiz", {
                 ...quizData,
-                id: "1212", // Assuming that the server expects the id as a string
-            });
-            console.log(res);
+                id: randomId(),
+            }).then(() => router.push("/game"));
 
-            // You might want to handle the response appropriately
         } catch (error) {
             console.error("Error during submission:", error);
         }

@@ -31,6 +31,7 @@ const GameWindow: React.FC<IWindow> = ({ children, step, setStep, setPick, quizA
         } else {
             return
         }
+        setPick(false)
     }
 
     return (
