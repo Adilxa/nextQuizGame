@@ -11,9 +11,6 @@ function RemoveQuiz({ data }: IGames) {
     const onDeleteQuiz = async (id: any) => {
         const res = await axios.delete("http://localhost:3001/quiz/" + id)
             .finally(() => alert("deleted successfully"))
-
-        console.log(res);
-
     }
 
     return (
